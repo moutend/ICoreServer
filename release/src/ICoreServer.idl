@@ -8,7 +8,8 @@ typedef [v1_enum] enum {
 	AA_IUIAutomation = 3
 } AvailableAccessibilityAPI ;
 
-typedef INT64(__stdcall *UIEventHandler)(INT64 eventId, AvailableAccessibilityAPI eAPI, LPVOID pInterface);
+typedef INT64(__stdcall *IUIEventHandler)(INT64 eventId, IUIAutomationElement *pInterface);
+typedef INT64(__stdcall *IAEventHandler)(INT64 eventId, IAccessible *pInterface);
 
 [
 	object,
@@ -18,7 +19,8 @@ typedef INT64(__stdcall *UIEventHandler)(INT64 eventId, AvailableAccessibilityAP
 interface ICoreServer : IDispatch {
 	[id(1), local] HRESULT Start();
 	[id(2), local] HRESULT Stop();
-	[id(3), local] HRESULT SetUIEventHandler([in] UIEventHandler handleFunc);
+	[id(3), local] HRESULT SetIAEventHandler([in] IAEventHandler handleFunc);
+	[id(4), local] HRESULT SetIUIEventHandler([in] IUIEventHandler handleFunc);
 }
 [
 	uuid(74FA9410-C4D2-4300-BBBB-4E6230C4F0B4),
