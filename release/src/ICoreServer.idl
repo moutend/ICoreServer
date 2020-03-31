@@ -1,5 +1,7 @@
 import "oaidl.idl";
 import "ocidl.idl";
+import "UIAutomationClient.idl"
+import "OleAcc.idl"
 
 typedef [v1_enum] enum {
 	AA_NONE = 0,
