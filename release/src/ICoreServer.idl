@@ -4,13 +4,23 @@ import "UIAutomationClient.idl";
 import "OleAcc.idl";
 
 typedef [v1_enum] enum {
+	TW_NONE = 0,
+	TW_NEXT = 1,
+	TW_PREVIOUS = 2,
+	TW_FIRST_CHILD = 3,
+	TW_LAST_CHILD = 4,
+	TW_PARENT = 5
+} TreeWalkerDirection;
+
+typedef [v1_enum] enum {
 	AA_NONE = 0,
 	AA_IAccessible = 1,
 	AA_IAccessible2 = 2,
 	AA_IUIAutomation = 3
-} AvailableAccessibilityAPI ;
+} AvailableAccessibilityAPI;
 
 typedef INT64(__stdcall *IUIEventHandler)(INT64 eventId, IUIAutomationElement *pInterface);
+
 typedef INT64(__stdcall *IAEventHandler)(INT64 eventId, IAccessible *pInterface);
 
 [
@@ -23,6 +33,7 @@ interface ICoreServer : IDispatch {
 	[id(2), local] HRESULT Stop();
 	[id(3), local] HRESULT SetIAEventHandler([in] IAEventHandler handleFunc);
 	[id(4), local] HRESULT SetIUIEventHandler([in] IUIEventHandler handleFunc);
+	[id(5), local] HRESULT GetIUIAutomationElementFromTreeWalker([in] TreeWalkerDirection direction, [in] IUIAutomationElement **pElement);
 }
 [
 	uuid(74FA9410-C4D2-4300-BBBB-4E6230C4F0B4),
