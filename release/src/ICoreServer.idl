@@ -21,7 +21,7 @@ typedef [v1_enum] enum {
 
 typedef INT64(__stdcall *IUIEventHandler)(INT64 eventId, IUIAutomationElement *pInterface);
 
-typedef INT64(__stdcall *IAEventHandler)(INT64 eventId, IAccessible *pInterface);
+typedef INT64(__stdcall *IAEventHandler)(INT64 eventId, INT64 childId, IAccessible *pInterface);
 
 [
 	object,
@@ -31,8 +31,8 @@ typedef INT64(__stdcall *IAEventHandler)(INT64 eventId, IAccessible *pInterface)
 interface ICoreServer : IDispatch {
 	[id(1), local] HRESULT Start();
 	[id(2), local] HRESULT Stop();
-	[id(3), local] HRESULT SetIAEventHandler([in] IAEventHandler handleFunc);
-	[id(4), local] HRESULT SetIUIEventHandler([in] IUIEventHandler handleFunc);
+	[id(3), local] HRESULT SetMSAAEventHandler([in] IAEventHandler handleFunc);
+	[id(4), local] HRESULT SetUIAEventHandler([in] IUIEventHandler handleFunc);
 	[id(5), local] HRESULT GetIUIAutomationElement([in] TreeWalkerDirection direction, [in] IUIAutomationElement *pRootElement, [in] IUIAutomationElement **ppElement);
 	[id(6), local] HRESULT UpdateTreeWalker();
 	[id(7), local] HRESULT ElementFromHandle([in] UIA_HWND hwnd, [in] IUIAutomationElement **ppElement);
